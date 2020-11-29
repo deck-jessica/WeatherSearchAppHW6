@@ -6,36 +6,36 @@ var searchLon = '';
 
 function submitSearch(event) {
     event.preventDefault();
-    var searchCity = $(this).siblings(".form-group").children("#searchCity").val();
-    console.log(searchCity);
-}
+    var searchCity = $("#searchCity").val();
 
-$('btn').on('click', submitSearch);
-
-function convertCitytoLatLon () {
-    
-    $.ajax({
-        url: 'https://geocode.xyz',
-        data: {
-          auth: '898433989651038822474x14465',
-          locate: searchCity,
-          json: '1'
-        }
-      }).done(function(data) {
-        console.log(data);
-      });
-}
+var cityURL = 'https://api.opencagedata.com/geocode/v1/json?q=' + searchCity + '&key=f208ee39889e4e2bb2b22d72f20c80e4';
+$.ajax({
+  url: cityURL, 
+  method: "GET",
+  success: (function(response){
+  console.log(response);
+  searchLat = response.results[0].geometry.lat;
+  searchLon = response.results[0].geometry.lng;
 
 
+var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + searchLat + "&lon=" + searchLon + "&appid=480467fcc74de595a5fe8d4f0216c279";
 
-var APIkey = "480467fcc74de595a5fe8d4f0216c279";
-var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + searchLat + "&lon=" + searchLon + "&appid=" + APIkey;
-function displayWeatherInfo (){
 $.ajax({
     url: queryURL,
     method:"GET"
-}).then(function(response){
-
+}).then(function(response2){
+console.log(response2);
 })
+})
+})   
 }
+
+$('#searchBtn').on('click', submitSearch);
+
+
+
+
+
+
+
 })
