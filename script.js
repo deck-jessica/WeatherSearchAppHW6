@@ -25,14 +25,20 @@ $.ajax({
     method:"GET"
 }).then(function(response2){
 console.log(response2);
+// building the div to house the search results
 var weatherResults = $("<div class='weather-results'>");
+// taking search results and appending to the page
 var cityDisp = $("<h2>").text("City: " + searchCity);
-weatherResults.append(cityDisp);
+var cityIcon = response2.current.weather[0].icon;
+var cityImg = $("<img>").attr({src: "https://openweathermap.org/img/wn/" + cityIcon + "@2x.png",
+                                alt: response2.current.weather[0].description});
 var tempToF = (response2.current.temp - 273.15) *1.80 + 32;
-var cityTemp = $("<p>").text("Temp(F): " + tempToF);
-weatherResults.append(cityTemp);
-var humidtyRes = (response2.current.humidty);
-var cityHumidity = $("<p>").text("Humidity: " + humidtyRes +"%");
+var cityTemp = $("<p>").text("Temp(F): " + tempToF.toFixed(2));
+var humidityRes = (response2.current.humidity);
+var cityHumidity = $("<p>").text("Humidity: " + humidityRes +"%");
+var windRes = (response2.current.wind_speed);
+var cityWind = $("<p>").text("Wind Speed: " + windRes +"MPH");
+weatherResults.append(cityDisp, cityImg, cityTemp, cityHumidity, cityWind);
 
 $(".card-text").append(weatherResults);
 })
