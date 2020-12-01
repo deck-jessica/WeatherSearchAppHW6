@@ -27,23 +27,23 @@
   <body>
     <div class="container">
       <div class="row">
-    <form>
+    <form class="col-3">
       <div class="form-group col-3">
         <label>Enter your city:</label>
-        <input class="form-control" id="searchCity">
+        <input class="form-control col-3" id="searchCity">
       </div>
-      <button type="submit" class="btn btn-primary" id="searchBtn">Submit</button>
+      <button type="submit" class="btn btn-primary col-3" id="searchBtn">Submit</button>
     </form>
+    <div class="searchHistory"></div>
+  </div>
     <div class="card col-9" >
       <div class="card-body">
         <h5 class="card-title">Current Weather Conditions</h5>
         <p class="card-text"></p>
-      </div>
-      <div class="searchResults"></div>
-     
+      </div>    
     </div>
     </div>
-    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </body>
   <script src="script.js"></script>

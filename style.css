@@ -10,3 +10,11 @@ body {
     color: white;
 
   }
+
+  .form-group {
+    align-content: stretch;
+  }
+
+  .btn-secondary {
+    display: grid;
+  }
