@@ -2,4 +2,11 @@ body {
     font-family: 'Architects Daughter', cursive;
     font-size: 16px;
     line-height: 1;
+    display: flex;
+  }
+
+  .card-title {
+    background-color: blue;
+    color: white;
+
   }

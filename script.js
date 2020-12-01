@@ -25,6 +25,16 @@ $.ajax({
     method:"GET"
 }).then(function(response2){
 console.log(response2);
+var weatherResults = $("<div class='weather-results'>");
+var cityDisp = $("<h2>").text("City: " + searchCity);
+weatherResults.append(cityDisp);
+var tempToF = (response2.current.temp - 273.15) *1.80 + 32;
+var cityTemp = $("<p>").text("Temp(F): " + tempToF);
+weatherResults.append(cityTemp);
+var humidtyRes = (response2.current.humidty);
+var cityHumidity = $("<p>").text("Humidity: " + humidtyRes +"%");
+
+$(".card-text").append(weatherResults);
 })
 })
 })   
