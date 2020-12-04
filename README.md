@@ -18,7 +18,7 @@ This project can be viewed and used using any web browser from the link provided
 
 
 
-![Landing Page](/quizbegin.jpg)
+![Landing Page](/DashboardScreenshot.png)
 
 
 ## Credits
