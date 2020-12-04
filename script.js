@@ -39,7 +39,7 @@ $.ajax({
   searchLon = response.results[0].geometry.lng;
 
 
-var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + searchLat + "&lon=" + searchLon + "&appid=480467fcc74de595a5fe8d4f0216c279";
+var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + searchLat + "&lon=" + searchLon + "&units=imperial&appid=480467fcc74de595a5fe8d4f0216c279";
 
 $.ajax({
     url: queryURL,
@@ -49,32 +49,53 @@ console.log(response2);
 // building the div to house the search results
 var weatherResults = $("<div class='weather-results'>");
 // taking search results and appending to the page
-var cityDisp = $("<h2>").text("City: " + cityName);
+var cityDisp = $("<h2>").text(cityName);
+var cityDateToStandard = moment.unix(response2.current.dt).format("MM/DD/YY");
+var cityDate = $("<p>").text("Date: " + cityDateToStandard);
 var cityIcon = response2.current.weather[0].icon;
 var cityImg = $("<img>").attr({src: "https://openweathermap.org/img/wn/" + cityIcon + "@2x.png",
                                 alt: response2.current.weather[0].description});
-var tempToF = (response2.current.temp - 273.15) *1.80 + 32;
-var cityTemp = $("<p>").text("Temp(F): " + tempToF.toFixed(2) + " &#176F");
+var tempToF = response2.current.temp;
+var cityTemp = $("<p>").text("Temp(F): " + tempToF + " F");
 var humidityRes = (response2.current.humidity);
 var cityHumidity = $("<p>").text("Humidity: " + humidityRes +"%");
 var windRes = (response2.current.wind_speed);
-var cityWind = $("<p>").text("Wind Speed: " + windRes +"MPH");
+var cityWind = $("<p>").text("Wind Speed: " + windRes +" MPH");
 var uvRes = (response2.current.uvi);
+var cityUV = $("<span>").html("UV Index: " + uvRes);
   if (uvRes <= 2) {
-    $(uvRes).addClass("badge badge-success");
+    cityUV.addClass("badge badge-success");
   } else if (uvRes > 2 && uvRes <= 5) {
-    $(uvRes).addClass("badge badge-warning");
+    cityUV.addClass("badge badge-warning");
   } else if (uvRes > 5) {
-    $(uvRes).addClass("badge badge-danger");
+    cityUV.addClass("badge badge-danger");
   }
- var cityUV = $("<span>").html("UV Index: " + uvRes); 
+  
 
 $(".card-text").empty();
 
-weatherResults.append(cityDisp, cityImg, cityTemp, cityHumidity, cityWind, cityUV);
+weatherResults.append(cityDisp, cityDate, cityImg, cityTemp, cityHumidity, cityWind, cityUV);
 
 
 $(".card-text").append(weatherResults);
+
+var forecastEls = $('.forecast');
+$('.forecast').each(function () {
+var forecastDateToStandard = moment.unix(response2.daily[i].dt).format(" ddd MM/DD");
+var forecastDate = $("<p>").text(forecastDateToStandard);
+var forecastIcon = response2.daily[i].weather[0].icon;
+var forecastImg = $("<img>").attr({src: "https://openweathermap.org/img/wn/" + forecastIcon + "@2x.png",
+                                alt: response2.daily[i].weather[0].description});
+var forecastHighTemp = response2.daily[i].temp.max;
+var forecastHTemp = $("<p>").text("High Temp(F): " + forecastHighTemp + " F");
+var forecastLowTemp = response2.daily[i].temp.min;
+var forecastLTemp = $("<p>").text("Low Temp(F): " + forecastLowTemp + " F");
+var forecastHumidityRes = (response2.daily[i].humidity);
+var forecastHumidity = $("<p>").text("Humidity: " + forecastHumidityRes +"%");
+
+forecastEls.append(forecastDate, forecastImg, forecastHTemp, forecastLTemp, forecastHumidity);
+
+})
 })
 })
 })   

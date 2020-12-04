@@ -4,7 +4,10 @@ body {
     line-height: 1;
     display: flex;
   }
-
+.jumbotron {
+  background-color: blue;
+  color: white;
+}
   .card-title {
     background-color: blue;
     color: white;
