@@ -93,6 +93,7 @@ var forecastLTemp = $("<p>").text("Low Temp(F): " + forecastLowTemp + " F");
 var forecastHumidityRes = (response2.daily[i].humidity);
 var forecastHumidity = $("<p>").text("Humidity: " + forecastHumidityRes +"%");
 
+$('.forecast').empty();
 forecastEls.append(forecastDate, forecastImg, forecastHTemp, forecastLTemp, forecastHumidity);
 
 })
