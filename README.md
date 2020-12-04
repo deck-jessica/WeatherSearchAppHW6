@@ -14,16 +14,15 @@ This project can be viewed and used using any web browser from the link provided
 
 ## Usage 
 
+Users can log onto this application and search for a city, and behind the scenes, this application converts user input into latitude and longitude. Once it has been converted, the results will run through OpenWeather API to get current weather conditions as well as render a 5-day forecast to the page. This will also save their search history to the page. Images displayed have alternate image descriptions. The image below shows a daily rendering of Charlotte, as well as the expected forecast results.
   
 
-
-
-![Landing Page](/DashboardScreenshot.png)
+![Landing Page](/.assets/images/DashboardScreenshot.png)
 
 
 ## Credits
 
-I used my Bootcamp course materials, and some minor help from my classmates and LAs. My tutor, Alistair, helped me understand the jquery behind the scenes and got my local storage understanding up to par.
+I used my Bootcamp course materials, and some minor help from my classmates and LAs. My tutor, Alistair, helped me understand the jquery behind the scenes and got my local storage understanding up to par. At the final hour, my instructor helped solve the mystery of the repeating day on the 5-day forecast.
 
 
 
